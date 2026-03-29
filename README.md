@@ -2,6 +2,8 @@
 
 * * *
 
+[English](#english)丨[中文](#中文)
+
 ## English
 
 This repository is natively packaged as a Codex skill. Its workflow and prompt structure can be adapted to other AI agents, but native compatibility depends on each agent's own extension mechanism. It turns scattered trade ideas, holdings screenshots, review notes, and recurring behavior patterns into a repeatable operating system:
