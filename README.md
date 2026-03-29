@@ -69,13 +69,17 @@ Pre-trade action meanings:
 
 ### Install
 
+From GitHub:
+
+```bash
+npx skills add https://github.com/yuanlslady/investment-discipline-console-skill/tree/main/investment-discipline-console
+```
+
 Manual install:
 
 ```bash
 cp -R investment-discipline-console "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
-
-Or install from this GitHub repo using your preferred Codex skill installer if it supports GitHub sources.
 
 ### Usage
 
@@ -166,13 +170,17 @@ investment-discipline-console/
 
 ### 安装
 
+从 GitHub 安装：
+
+```bash
+npx skills add https://github.com/yuanlslady/investment-discipline-console-skill/tree/main/investment-discipline-console
+```
+
 手动安装：
 
 ```bash
 cp -R investment-discipline-console "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
-
-如果你的 Codex skill 安装器支持 GitHub 源，也可以直接从本仓库安装。
 
 ### 使用示例
 
