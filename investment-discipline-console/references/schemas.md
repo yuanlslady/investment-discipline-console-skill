@@ -119,6 +119,34 @@ winner_loser_summary: string
 suggested_actions: string[]
 ```
 
+## holdings_delta_review
+
+```yaml
+start_date: ISO date
+end_date: ISO date
+major_adds:
+  - ticker: string
+    weight_change_pct: number
+    note: string
+major_trims:
+  - ticker: string
+    weight_change_pct: number
+    note: string
+major_exits: string[]
+new_positions: string[]
+removed_positions: string[]
+leverage_exposure_change_pct: number
+theme_exposure_changes:
+  - theme: string
+    start_exposure_pct: number
+    end_exposure_pct: number
+    change_pct: number
+unexplained_changes: string[]
+explanation_prompts: string[]
+process_verdict: aligned | mixed | drifted | unknown
+suggested_next_step: string
+```
+
 ## trade_intent
 
 ```yaml

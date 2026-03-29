@@ -14,6 +14,7 @@
 - "Look at my current portfolio and tell me where the concentration and leverage risks are."
 - "Help me define how much leverage I allow in total, how much one theme can occupy, and when large winners must be reduced."
 - "Combine my HK and US accounts into one portfolio view and tell me which limits I am breaching."
+- "Compare my T-day holdings with my T+3-day holdings and tell me which changes need explanation."
 
 ## Pre-Trade Example Output
 

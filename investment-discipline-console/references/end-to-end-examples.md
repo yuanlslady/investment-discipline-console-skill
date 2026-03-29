@@ -111,3 +111,53 @@ pre_trade_review:
     - catalyst is still expectation-based
   reasoning: "The direction may be reasonable, but the thesis and sizing are not yet explicit enough for a clean allow."
 ```
+
+## Example 4: Holdings Delta Review Across Two Dates
+
+### User Request
+
+`Use $investment-discipline-console to compare my T-day holdings with my T+3-day holdings and tell me which changes need explanation.`
+
+### Expected Behavior
+
+- normalize the start and end book into comparable structures
+- identify major adds, trims, exits, and new positions
+- check whether leverage and theme exposure changed materially
+- ask the user to explain the top unexplained changes before making a strong process judgment
+- return a structured `holdings_delta_review`
+
+### Expected Structured Output
+
+```yaml
+holdings_delta_review:
+  start_date: null
+  end_date: null
+  major_adds:
+    - ticker: "SEMILEV"
+      weight_change_pct: 12
+      note: "New leveraged semiconductor exposure added."
+  major_trims:
+    - ticker: "B"
+      weight_change_pct: -8
+      note: "Position was cut sharply over the review window."
+  major_exits: []
+  new_positions:
+    - "SEMILEV"
+    - "AI1"
+    - "AI2"
+  removed_positions: []
+  leverage_exposure_change_pct: 12
+  theme_exposure_changes:
+    - theme: "AI hardware"
+      start_exposure_pct: 10
+      end_exposure_pct: 28
+      change_pct: 18
+  unexplained_changes:
+    - "Large new leveraged semiconductor exposure"
+    - "Sharp trim in B without stated trigger"
+  explanation_prompts:
+    - "What new fact justified adding the leveraged semiconductor position?"
+    - "Was the trim in B planned by thesis, valuation, or risk control?"
+  process_verdict: mixed
+  suggested_next_step: "Explain the top two changes first, then review whether the resulting theme and leverage exposure still fit the portfolio rules."
+```
