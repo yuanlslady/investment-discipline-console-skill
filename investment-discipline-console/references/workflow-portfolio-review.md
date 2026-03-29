@@ -1,0 +1,97 @@
+# Portfolio Review Workflow
+
+Use this flow when the user wants to review current holdings, uploads a broker screenshot, or asks what needs attention in the existing book.
+
+## Inputs
+
+Accept either:
+
+- a manual list of holdings
+- a broker screenshot with visible position rows
+- an `account_snapshot`
+- a `portfolio_book` spanning multiple accounts
+
+If the input is a screenshot, first extract a best-effort normalized holdings table. State uncertainty when names or numbers are hard to read.
+
+## Extraction Rule
+
+For each visible row, try to capture:
+
+- ticker
+- name
+- market
+- market_value
+- share_count
+- last_price
+- avg_cost
+- unrealized_pnl or day_pnl when visible
+- whether the instrument is leveraged
+
+If total account value is visible, use it to estimate portfolio weights. If it is not visible, keep `portfolio_weight` blank instead of inventing it.
+
+## Multi-Account Aggregation
+
+If the user provides multiple accounts:
+
+- normalize each account into an `account_snapshot`
+- convert them into a common base currency if FX assumptions are available
+- return a `portfolio_book`
+- if FX assumptions are missing, still return the multi-account structure and clearly mark aggregate percentage judgments as approximate
+
+## Review Objectives
+
+Review the book across five lenses:
+
+- concentration
+- leverage
+- thesis clarity
+- macro and industry fit
+- behavior drift
+
+Use the user's thresholds from `portfolio_context` whenever available, especially:
+
+- `single_position_risk_budget_pct`
+- `single_theme_risk_budget_pct`
+- `max_total_leveraged_exposure_pct`
+- `profit_take_or_deleverage_trigger_pct`
+
+## Red Flags
+
+Escalate concern when any of the following appears:
+
+- a single position is too large relative to stated budget
+- total leveraged exposure exceeds the stated cap
+- a single theme exceeds the stated cap
+- multiple leveraged instruments dominate the book
+- the book is full of theme overlap disguised as different tickers
+- large winners are held only because of greed
+- large losers are held without explicit invalidation logic
+- the user is using short-term tools to express long-term views
+- a position exceeds the user's profit threshold but has not been partially reduced or delevered
+- the current book conflicts with the user's macro stance
+
+## Output
+
+Return:
+
+- a normalized `account_snapshot` when possible
+- a normalized `portfolio_book` when multiple accounts are involved
+- a `holdings_review`
+- a short human-readable review with the top three issues and the next action list
+
+The `holdings_review` should calculate or estimate:
+
+- total leveraged exposure percentage
+- single-position breaches
+- theme-level exposures and breaches
+- profit-take candidates when gains exceed the trigger
+
+## Action Language
+
+Suggested actions should be explicit:
+
+- keep and monitor
+- reduce size
+- convert to a non-levered expression
+- define thesis and invalidation
+- schedule a formal pre-trade or attribution review

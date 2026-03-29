@@ -1,0 +1,4 @@
+interface:
+  display_name: "Investment Discipline Console"
+  short_description: "Disciplined investing workflow and review system"
+  default_prompt: "Use $investment-discipline-console to turn an investment idea into a disciplined watchlist, trade review, and attribution workflow."
