@@ -196,3 +196,59 @@ profile_name: string
 profile_summary: string
 evidence: string[]
 ```
+
+## user_profile
+
+```yaml
+user_id: string
+style_label: conservative | balanced | aggressive | unknown
+holding_horizon: short_term | swing | medium_term | long_term | mixed | unknown
+preferred_instrument_types: string[]
+risk_response_pattern: string
+strength_patterns: string[]
+weakness_patterns: string[]
+coaching_notes: string[]
+last_updated: ISO date
+```
+
+## rule_memory
+
+```yaml
+confirmed_rules:
+  - rule_key: string
+    rule_text: string
+    source: bootstrap | attribution | manual
+    updated_at: ISO date
+```
+
+## behavior_memory_entry
+
+```yaml
+entry_date: ISO date
+context: pre_trade | holdings_review | holdings_delta | attribution | weekly_review
+mistake_tags: string[]
+summary: string
+trigger: string
+safeguard: string
+```
+
+## decision_memory_entry
+
+```yaml
+entry_date: ISO date
+ticker_or_trade_label: string
+action: buy | sell | add | trim | rotate | hold | review
+process_quality: good | mixed | poor | unknown
+outcome_quality: favorable | neutral | unfavorable | unknown
+lesson: string
+```
+
+## weekly_discipline_digest
+
+```yaml
+period_label: string
+top_strengths: string[]
+top_mistakes: string[]
+recurring_tags: string[]
+next_focus: string[]
+```

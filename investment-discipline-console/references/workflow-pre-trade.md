@@ -11,6 +11,13 @@ Use this flow when the user wants to execute, size, trim, add, sell, or rotate a
 - Invalidation logic
 - Target size after the trade
 
+When available, also read:
+
+- `user_profile`
+- `rule_memory`
+- recent `behavior_memory_entry`
+- recent `weekly_discipline_digest`
+
 ## Action Set
 
 Use exactly one of these final actions:
@@ -62,6 +69,8 @@ Escalate concern when any of the following appears:
 - Theme concentration is too high
 - Thesis has weakened or already played out
 - Cooldown is still active
+- The setup repeats a known personal mistake pattern
+- The setup conflicts with the user's stated holding horizon or style
 
 ## Memo Structure
 
@@ -75,9 +84,22 @@ The pre-trade memo should contain:
 - Why now
 - What would make the trade wrong
 - Planned size and holding plan
+- Relevant memory pattern or coaching note
 - Final action
 - Required next step
 
 ## Output Shape
 
 Return a `pre_trade_review` object plus a readable memo.
+
+## Personalization Rule
+
+Use memory to make the review more targeted, but keep the conclusion at the discipline level.
+
+Focus on:
+
+- whether the trade fits the user's rules
+- whether it repeats a prior mistake
+- whether the setup matches the user's declared style
+
+Do not turn memory into a symbol-level recommendation engine.

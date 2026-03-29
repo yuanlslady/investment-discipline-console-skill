@@ -20,6 +20,11 @@ Use this flow on first use or whenever the portfolio context is missing or stale
 
 Return a normalized `portfolio_context` object and, when relevant, one or more `industry_view` objects.
 
+When enough style information exists, also initialize:
+
+- `user_profile`
+- `rule_memory`
+
 Always map sector or theme context into `industry_view`. If the user gives a vague statement such as "AI is still a big opportunity", rewrite it into the closest valid `industry_view` object and mark any missing fields explicitly.
 
 ## Bootstrap Questions
@@ -38,6 +43,8 @@ Ask for these fields explicitly:
 - What is the current macro stance?
 - What is the current liquidity, rates, or risk-appetite view if the user has one?
 - What is the current industry judgment for the target area?
+- What holding horizon best describes the user?
+- What kind of mistakes does the user think they repeat most often?
 
 ## Decision Rule
 
@@ -52,3 +59,4 @@ Sizing without portfolio size is not real sizing.
 Sizing without target return, drawdown tolerance, and risk budget is not aligned sizing.
 Leverage without an aggregate cap and profit-taking rule is unmanaged leverage.
 Trade review without macro and industry context is an isolated opinion, not a disciplined process.
+Discipline memory is stronger when the user's intended style and self-identified weak points are explicit from the start.

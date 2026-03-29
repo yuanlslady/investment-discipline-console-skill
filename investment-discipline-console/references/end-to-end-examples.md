@@ -161,3 +161,47 @@ holdings_delta_review:
   process_verdict: mixed
   suggested_next_step: "Explain the top two changes first, then review whether the resulting theme and leverage exposure still fit the portfolio rules."
 ```
+
+## Example 5: Discipline Memory Summary
+
+### User Request
+
+`Use $investment-discipline-console to summarize what kind of trader I am becoming from my recent reviews and tell me what mistakes I repeat.`
+
+### Expected Behavior
+
+- read prior rules, mistake tags, and prior review lessons
+- summarize the user's style and repeated process problems
+- produce coaching notes for future reviews
+- avoid turning the summary into symbol-level advice
+
+### Expected Structured Output
+
+```yaml
+user_profile:
+  user_id: "demo-user"
+  style_label: balanced
+  holding_horizon: medium_term
+  risk_response_pattern: "Becomes more reactive after fast gains or macro headlines."
+  strength_patterns:
+    - "Usually defines position caps explicitly."
+  weakness_patterns:
+    - "Adds risk after large gains."
+    - "Lets volatility pressure distort timing."
+  coaching_notes:
+    - "When gains exceed the deleveraging trigger, check risk reduction before adding."
+  last_updated: "2026-03-29"
+
+weekly_discipline_digest:
+  period_label: "2026-W13"
+  top_strengths:
+    - "Risk budgets are more explicit."
+  top_mistakes:
+    - "Profit pressure still changes behavior."
+    - "Volatility noise still triggers plan drift."
+  recurring_tags:
+    - "profit_pressure"
+    - "volatility_reactivity"
+  next_focus:
+    - "Require one written new fact before changing a winning position."
+```
