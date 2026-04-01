@@ -1,8 +1,8 @@
-# Investment Discipline Console Skill
+﻿# Investment Discipline Console Skill
 
 * * *
 
-[English](#english)丨[中文](#中文)
+[English](#english)涓╗涓枃](#涓枃)
 
 ## English
 
@@ -79,7 +79,7 @@ Pre-trade action meanings:
 From GitHub:
 
 ```bash
-npx skills add https://github.com/yuanlslady/investment-discipline-console-skill/tree/main/investment-discipline-console
+npx skills add https://github.com/yuanlusi/investment-discipline-console-skill/tree/main/investment-discipline-console
 ```
 
 Manual install:
@@ -117,39 +117,39 @@ Use $investment-discipline-console to summarize what kind of trader I am becomin
 - It does not replace independent judgment.
 - It is intentionally conservative when portfolio context is missing.
 
-## 中文
+## 涓枃
 
-这个仓库当前原生采用 Codex skill 格式打包；其中的方法论和提示结构也可以迁移到其他 AI Agent，但是否原生兼容取决于对方自己的扩展机制。
-它把零散的交易想法、持仓截图、复盘笔记和重复行为模式，整理成一套可重复执行的操作系统：
+杩欎釜浠撳簱褰撳墠鍘熺敓閲囩敤 Codex skill 鏍煎紡鎵撳寘锛涘叾涓殑鏂规硶璁哄拰鎻愮ず缁撴瀯涔熷彲浠ヨ縼绉诲埌鍏朵粬 AI Agent锛屼絾鏄惁鍘熺敓鍏煎鍙栧喅浜庡鏂硅嚜宸辩殑鎵╁睍鏈哄埗銆?
+瀹冩妸闆舵暎鐨勪氦鏄撴兂娉曘€佹寔浠撴埅鍥俱€佸鐩樼瑪璁板拰閲嶅琛屼负妯″紡锛屾暣鐞嗘垚涓€濂楀彲閲嶅鎵ц鐨勬搷浣滅郴缁燂細
 
-- 首次使用的组合初始化
-- 手工持仓 / 券商截图持仓 review
-- 多账户组合汇总
-- 两期持仓变化 review
-- 观察池 intake
-- 交易前审查
-- 交易后归因
-- 纪律记忆 / 用户画像迭代
-- 行为偏差修正与错误标签沉淀
+- 棣栨浣跨敤鐨勭粍鍚堝垵濮嬪寲
+- 鎵嬪伐鎸佷粨 / 鍒稿晢鎴浘鎸佷粨 review
+- 澶氳处鎴风粍鍚堟眹鎬?
+- 涓ゆ湡鎸佷粨鍙樺寲 review
+- 瑙傚療姹?intake
+- 浜ゆ槗鍓嶅鏌?
+- 浜ゆ槗鍚庡綊鍥?
+- 绾緥璁板繂 / 鐢ㄦ埛鐢诲儚杩唬
+- 琛屼负鍋忓樊淇涓庨敊璇爣绛炬矇娣€
 
-这套 skill 的定位不是“只做研究”的助手，而是“纪律系统”。它会优先要求组合上下文、风险预算和失效条件，再进入更深的公司分析。
+杩欏 skill 鐨勫畾浣嶄笉鏄€滃彧鍋氱爺绌垛€濈殑鍔╂墜锛岃€屾槸鈥滅邯寰嬬郴缁熲€濄€傚畠浼氫紭鍏堣姹傜粍鍚堜笂涓嬫枃銆侀闄╅绠楀拰澶辨晥鏉′欢锛屽啀杩涘叆鏇存繁鐨勫叕鍙稿垎鏋愩€?
 
-### 什么时候会触发
+### 浠€涔堟椂鍊欎細瑙﹀彂
 
-一般有两种情况会触发这套 skill：
+涓€鑸湁涓ょ鎯呭喌浼氳Е鍙戣繖濂?skill锛?
 
-- 你直接点名使用 `$investment-discipline-console`
-- 你的请求本身就在做持仓 review、交易审查、两期持仓对比、交易前 memo、交易后复盘，或者首次建立投资纪律系统
+- 浣犵洿鎺ョ偣鍚嶄娇鐢?`$investment-discipline-console`
+- 浣犵殑璇锋眰鏈韩灏卞湪鍋氭寔浠?review銆佷氦鏄撳鏌ャ€佷袱鏈熸寔浠撳姣斻€佷氦鏄撳墠 memo銆佷氦鏄撳悗澶嶇洏锛屾垨鑰呴娆″缓绔嬫姇璧勭邯寰嬬郴缁?
 
-常见触发场景包括：
+甯歌瑙﹀彂鍦烘櫙鍖呮嫭锛?
 
-- 你上传持仓截图，希望 review 当前持仓
-- 你给出两个时点的持仓，希望解释为什么变化这么大
-- 你问“这笔交易我该不该做”
-- 你第一次用这套系统，希望先把账户规模、回撤、仓位上限这些规则定下来
-- 你希望做一次周度纪律复盘，看看这周重复了哪些错误
+- 浣犱笂浼犳寔浠撴埅鍥撅紝甯屾湜 review 褰撳墠鎸佷粨
+- 浣犵粰鍑轰袱涓椂鐐圭殑鎸佷粨锛屽笇鏈涜В閲婁负浠€涔堝彉鍖栬繖涔堝ぇ
+- 浣犻棶鈥滆繖绗斾氦鏄撴垜璇ヤ笉璇ュ仛鈥?
+- 浣犵涓€娆＄敤杩欏绯荤粺锛屽笇鏈涘厛鎶婅处鎴疯妯°€佸洖鎾ゃ€佷粨浣嶄笂闄愯繖浜涜鍒欏畾涓嬫潵
+- 浣犲笇鏈涘仛涓€娆″懆搴︾邯寰嬪鐩橈紝鐪嬬湅杩欏懆閲嶅浜嗗摢浜涢敊璇?
 
-### 仓库结构
+### 浠撳簱缁撴瀯
 
 ```text
 investment-discipline-console/
@@ -170,59 +170,59 @@ investment-discipline-console/
     end-to-end-examples.md
 ```
 
-### 覆盖内容
+### 瑕嗙洊鍐呭
 
-- `bootstrap`：先定义账户规模、目标收益率、回撤容忍度、单仓上限、主题上限、杠杆上限、止盈降杠杆触发条件、宏观判断、产业判断
-- `portfolio review`：review 当前持仓、杠杆暴露、集中度、止盈候选和跨账户风险
-- `holdings delta review`：对比 T 日和 T+N 日持仓，识别大幅加仓、减仓、清仓、新开仓，并要求用户解释大变化
-- `discipline memory`：沉淀用户风格、已确认规则、重复错误和周度纪律模式，让后续 review 更有针对性
-- `watchlist`：把模糊想法变成明确的 thesis + catalyst 记录
-- `pre-trade review`：输出 `allow`、`review`、`reduce_size`、`delay`、`block`
-- `attribution`：把结果与过程拆开，沉淀成可复用规则
+- `bootstrap`锛氬厛瀹氫箟璐︽埛瑙勬ā銆佺洰鏍囨敹鐩婄巼銆佸洖鎾ゅ蹇嶅害銆佸崟浠撲笂闄愩€佷富棰樹笂闄愩€佹潬鏉嗕笂闄愩€佹鐩堥檷鏉犳潌瑙﹀彂鏉′欢銆佸畯瑙傚垽鏂€佷骇涓氬垽鏂?
+- `portfolio review`锛歳eview 褰撳墠鎸佷粨銆佹潬鏉嗘毚闇层€侀泦涓害銆佹鐩堝€欓€夊拰璺ㄨ处鎴烽闄?
+- `holdings delta review`锛氬姣?T 鏃ュ拰 T+N 鏃ユ寔浠擄紝璇嗗埆澶у箙鍔犱粨銆佸噺浠撱€佹竻浠撱€佹柊寮€浠擄紝骞惰姹傜敤鎴疯В閲婂ぇ鍙樺寲
+- `discipline memory`锛氭矇娣€鐢ㄦ埛椋庢牸銆佸凡纭瑙勫垯銆侀噸澶嶉敊璇拰鍛ㄥ害绾緥妯″紡锛岃鍚庣画 review 鏇存湁閽堝鎬?
+- `watchlist`锛氭妸妯＄硦鎯虫硶鍙樻垚鏄庣‘鐨?thesis + catalyst 璁板綍
+- `pre-trade review`锛氳緭鍑?`allow`銆乣review`銆乣reduce_size`銆乣delay`銆乣block`
+- `attribution`锛氭妸缁撴灉涓庤繃绋嬫媶寮€锛屾矇娣€鎴愬彲澶嶇敤瑙勫垯
 
-`pre-trade review` 几个状态的含义：
+`pre-trade review` 鍑犱釜鐘舵€佺殑鍚箟锛?
 
-- `allow`：可以执行，核心信息和仓位约束基本完整
-- `review`：方向可能对，但还不能直接下单，仍缺少关键字段或证据
-- `reduce_size`：方向未必错，但仓位、杠杆或风险重叠过大，需要缩小表达
-- `delay`：先别动，当前更适合补信息、等新事实或等纪律条件满足
-- `block`：当前不应执行，这笔交易明显违反既定纪律或风险预算
+- `allow`锛氬彲浠ユ墽琛岋紝鏍稿績淇℃伅鍜屼粨浣嶇害鏉熷熀鏈畬鏁?
+- `review`锛氭柟鍚戝彲鑳藉锛屼絾杩樹笉鑳界洿鎺ヤ笅鍗曪紝浠嶇己灏戝叧閿瓧娈垫垨璇佹嵁
+- `reduce_size`锛氭柟鍚戞湭蹇呴敊锛屼絾浠撲綅銆佹潬鏉嗘垨椋庨櫓閲嶅彔杩囧ぇ锛岄渶瑕佺缉灏忚〃杈?
+- `delay`锛氬厛鍒姩锛屽綋鍓嶆洿閫傚悎琛ヤ俊鎭€佺瓑鏂颁簨瀹炴垨绛夌邯寰嬫潯浠舵弧瓒?
+- `block`锛氬綋鍓嶄笉搴旀墽琛岋紝杩欑瑪浜ゆ槗鏄庢樉杩濆弽鏃㈠畾绾緥鎴栭闄╅绠?
 
-### 安装
+### 瀹夎
 
-从 GitHub 安装：
+浠?GitHub 瀹夎锛?
 
 ```bash
-npx skills add https://github.com/yuanlslady/investment-discipline-console-skill/tree/main/investment-discipline-console
+npx skills add https://github.com/yuanlusi/investment-discipline-console-skill/tree/main/investment-discipline-console
 ```
 
-手动安装：
+鎵嬪姩瀹夎锛?
 
 ```bash
 cp -R investment-discipline-console "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
-### 使用示例
+### 浣跨敤绀轰緥
 
 ```text
-使用 $investment-discipline-console，先帮我建立组合上下文，再开始审查任何交易。
+浣跨敤 $investment-discipline-console锛屽厛甯垜寤虹珛缁勫悎涓婁笅鏂囷紝鍐嶅紑濮嬪鏌ヤ换浣曚氦鏄撱€?
 
-使用 $investment-discipline-console，把我的港股和美股账户合并成一个组合视角，并告诉我哪些仓位限制已经超了。
+浣跨敤 $investment-discipline-console锛屾妸鎴戠殑娓偂鍜岀編鑲¤处鎴峰悎骞舵垚涓€涓粍鍚堣瑙掞紝骞跺憡璇夋垜鍝簺浠撲綅闄愬埗宸茬粡瓒呬簡銆?
 
-使用 $investment-discipline-console，帮我审查一下我是否应该先开一个腾讯的初始仓位。
+浣跨敤 $investment-discipline-console锛屽府鎴戝鏌ヤ竴涓嬫垜鏄惁搴旇鍏堝紑涓€涓吘璁殑鍒濆浠撲綅銆?
 
-使用 $investment-discipline-console，看看我当前持仓里哪些仓位最需要复盘。
+浣跨敤 $investment-discipline-console锛岀湅鐪嬫垜褰撳墠鎸佷粨閲屽摢浜涗粨浣嶆渶闇€瑕佸鐩樸€?
 
-使用 $investment-discipline-console，对比我 T 日和 T+3 日的持仓变化，并指出哪些大变化需要我解释原因。
+浣跨敤 $investment-discipline-console锛屽姣旀垜 T 鏃ュ拰 T+3 鏃ョ殑鎸佷粨鍙樺寲锛屽苟鎸囧嚭鍝簺澶у彉鍖栭渶瑕佹垜瑙ｉ噴鍘熷洜銆?
 
-使用 $investment-discipline-console，帮我做一次周度纪律复盘，总结这周我重复了哪些错误。
+浣跨敤 $investment-discipline-console锛屽府鎴戝仛涓€娆″懆搴︾邯寰嬪鐩橈紝鎬荤粨杩欏懆鎴戦噸澶嶄簡鍝簺閿欒銆?
 
-使用 $investment-discipline-console，根据我最近几次 review，总结一下我正在变成什么样的交易者，以及我最常重复的错误。
+浣跨敤 $investment-discipline-console锛屾牴鎹垜鏈€杩戝嚑娆?review锛屾€荤粨涓€涓嬫垜姝ｅ湪鍙樻垚浠€涔堟牱鐨勪氦鏄撹€咃紝浠ュ強鎴戞渶甯搁噸澶嶇殑閿欒銆?
 ```
 
-### 说明
+### 璇存槑
 
-- 这套 skill 用于结构化决策支持和复盘，不代替独立判断。
-- 它会基于历史 review 沉淀纪律记忆、用户画像和周度复盘摘要，但这些记忆只服务于过程建议，不服务于荐股或预测，不针对具体标的是否值得买卖给建议。
-- 当组合上下文缺失时，它会刻意保守。
-- 它强调“先制度，后研究；先组合，后单笔”。
+- 杩欏 skill 鐢ㄤ簬缁撴瀯鍖栧喅绛栨敮鎸佸拰澶嶇洏锛屼笉浠ｆ浛鐙珛鍒ゆ柇銆?
+- 瀹冧細鍩轰簬鍘嗗彶 review 娌夋穩绾緥璁板繂銆佺敤鎴风敾鍍忓拰鍛ㄥ害澶嶇洏鎽樿锛屼絾杩欎簺璁板繂鍙湇鍔′簬杩囩▼寤鸿锛屼笉鏈嶅姟浜庤崘鑲℃垨棰勬祴锛屼笉閽堝鍏蜂綋鏍囩殑鏄惁鍊煎緱涔板崠缁欏缓璁€?
+- 褰撶粍鍚堜笂涓嬫枃缂哄け鏃讹紝瀹冧細鍒绘剰淇濆畧銆?
+- 瀹冨己璋冣€滃厛鍒跺害锛屽悗鐮旂┒锛涘厛缁勫悎锛屽悗鍗曠瑪鈥濄€?

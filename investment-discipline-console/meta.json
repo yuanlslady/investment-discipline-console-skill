@@ -1,0 +1,18 @@
+﻿{
+    "skill_id":  "investment-discipline-console",
+    "display_name":  "investment-discipline-console",
+    "category":  "finance-discipline",
+    "owner":  "yuanlusi",
+    "version":  "2026-03-30-01",
+    "source_platform":  "agents",
+    "source_path":  "C:\\Users\\yuanlusi\\OneDrive\\02 AI实践派\\AI Project\\.agents\\skills\\investment-discipline-console",
+    "canonical_root":  "06-skill-hub/shared/investment-discipline-console",
+    "wrapper_mode":  "wrapper",
+    "import_status":  "imported",
+    "supported_platforms":  [
+                                "claude",
+                                "codex",
+                                "antigravity"
+                            ],
+    "notes":  "Imported from existing platform-specific skill directory; classification pending."
+}

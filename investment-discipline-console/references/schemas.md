@@ -151,6 +151,9 @@ suggested_next_step: string
 
 ```yaml
 trade_action: buy | sell | add | trim | rotate
+trade_type: catalyst_trade | fundamental_holding
+# catalyst_trade: event-driven, defined time window, exit on catalyst resolution
+# fundamental_holding: long-term thesis, position sized to portfolio weight, exit on thesis invalidation
 target_weight_after_trade: number
 why_now: string
 what_changed: string
@@ -163,6 +166,11 @@ portfolio_context_ready: boolean
 risk_budget_aligned: boolean
 leveraged_exposure_aligned: boolean
 theme_budget_aligned: boolean
+contingency_plan: string
+# Required when trade_type = catalyst_trade.
+# Must be one of: (A) exit at close on catalyst day if result disappoints,
+# (B) hold X days then exit regardless, (C) halve position and reassess.
+# Choose one before entry. Not modifiable in real time.
 ```
 
 ## pre_trade_review
@@ -186,6 +194,32 @@ lesson: string
 process_quality: good | mixed | poor
 outcome_quality: favorable | neutral | unfavorable
 next_safeguard: string
+decision_source: self_initiated | ai_prompted | external_triggered
+# self_initiated: user identified and acted independently
+# ai_prompted: AI surfaced the action, user agreed and executed
+# external_triggered: news, third-party recommendation, or market event triggered the action
+decision_source_notes: string
+# Optional. Record whether the decision_source affected process quality.
+# Example: "ai_prompted —碎股清理属于被推动后行动，阻力来自惰性非实质异议"
+```
+
+## trade_type_conversion_check
+
+```yaml
+ticker: string
+original_trade_type: catalyst_trade
+converted_to: fundamental_holding
+conversion_date: ISO date
+acknowledged: boolean
+# Must be true. The user must explicitly state this is a conversion, not a drift.
+new_thesis_written: boolean
+# Must be true. A fresh fundamental thesis must exist, independent of the original catalyst logic.
+invalidation_written: boolean
+# Must be true. Specific invalidation conditions must be defined for the fundamental holding.
+position_size_reviewed: boolean
+# Must be true. Position weight must be re-evaluated against fundamental_holding standards.
+conversion_verdict: approved | blocked
+# approved only when all four boolean fields are true.
 ```
 
 ## behavior_profile
@@ -195,60 +229,4 @@ profile_key: string
 profile_name: string
 profile_summary: string
 evidence: string[]
-```
-
-## user_profile
-
-```yaml
-user_id: string
-style_label: conservative | balanced | aggressive | unknown
-holding_horizon: short_term | swing | medium_term | long_term | mixed | unknown
-preferred_instrument_types: string[]
-risk_response_pattern: string
-strength_patterns: string[]
-weakness_patterns: string[]
-coaching_notes: string[]
-last_updated: ISO date
-```
-
-## rule_memory
-
-```yaml
-confirmed_rules:
-  - rule_key: string
-    rule_text: string
-    source: bootstrap | attribution | manual
-    updated_at: ISO date
-```
-
-## behavior_memory_entry
-
-```yaml
-entry_date: ISO date
-context: pre_trade | holdings_review | holdings_delta | attribution | weekly_review
-mistake_tags: string[]
-summary: string
-trigger: string
-safeguard: string
-```
-
-## decision_memory_entry
-
-```yaml
-entry_date: ISO date
-ticker_or_trade_label: string
-action: buy | sell | add | trim | rotate | hold | review
-process_quality: good | mixed | poor | unknown
-outcome_quality: favorable | neutral | unfavorable | unknown
-lesson: string
-```
-
-## weekly_discipline_digest
-
-```yaml
-period_label: string
-top_strengths: string[]
-top_mistakes: string[]
-recurring_tags: string[]
-next_focus: string[]
 ```

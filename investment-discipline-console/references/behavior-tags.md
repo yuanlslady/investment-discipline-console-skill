@@ -23,10 +23,6 @@ Use these labels when mapping repeated review failures into behavior profiles.
 - `review_overdue`: skipped or delayed the planned review
 - `probe_to_long_hold_drift`: a probe silently became a core position
 - `cooldown_active`: traded during the cooldown window
-- `profit_pressure`: changed behavior mainly because gains became emotionally salient
-- `volatility_reactivity`: abandoned plan because of market noise or fast tape
-- `rule_override`: knowingly broke a previously confirmed rule
-- `style_mismatch`: executed in a way that does not match the declared style or horizon
 
 ## Mapping Rule
 

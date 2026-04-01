@@ -1,6 +1,6 @@
 ---
 name: investment-discipline-console
-description: "Structured investment-discipline workflow for turning scattered ideas, positions, screenshots, trade notes, and recurring behavior patterns into a repeatable process: first-run portfolio bootstrap, holdings review, holdings delta review, watchlist intake, pre-trade review, post-trade attribution, discipline memory, and behavior correction. Use when the user wants to build or apply a disciplined investing workflow, review current holdings from manual input or broker screenshots, compare portfolio snapshots across time, aggregate multiple accounts into one portfolio view, review a candidate trade before execution, write a pre-trade memo, record a trade thesis and invalidation, analyze a completed trade, summarize a user discipline profile, tag recurring execution mistakes, or bootstrap a personal investment operating system from notes that currently live only in the user's head."
+description: "Structured investment-discipline workflow for turning scattered ideas, positions, screenshots, and trade notes into a repeatable process: first-run portfolio bootstrap, holdings review, holdings delta review, watchlist intake, pre-trade review, post-trade attribution, and behavior correction. Use when the user wants to build or apply a disciplined investing workflow, review current holdings from manual input or broker screenshots, compare portfolio snapshots across time, aggregate multiple accounts into one portfolio view, review a candidate trade before execution, write a pre-trade memo, record a trade thesis and invalidation, analyze a completed trade, tag recurring execution mistakes, or bootstrap a personal investment operating system from notes that currently live only in the user's head."
 ---
 
 # Investment Discipline Console
@@ -13,6 +13,17 @@ Use this skill in two cases:
 
 - The user explicitly names `$investment-discipline-console`.
 - The user's request is about holdings review, trade review, comparing two portfolio snapshots, writing a pre-trade memo, post-trade attribution, or setting up the investing discipline system for the first time.
+
+**Semantic fallback triggers** — also activate this skill when the user says any of the following without naming the skill:
+
+- "帮我看一下这个仓位要不要减 / 加 / 清"
+- "这个股票值不值得买"
+- "我想做一下持仓梳理"
+- "帮我复盘这笔交易"
+- "这个想法能不能放进观察池"
+- "我在考虑换仓 / 轮换"
+- Uploads a broker screenshot with holdings
+- Describes a completed trade and asks what went wrong
 
 Common trigger scenarios include:
 
@@ -28,24 +39,23 @@ Common trigger phrases include:
 - "Help me review whether I should open a Tencent starter position."
 - "Review my current holdings and tell me what needs attention."
 - "Compare my T-day holdings with my T+3-day holdings and tell me which changes need explanation."
-- "Use $investment-discipline-console to run a weekly discipline review and summarize what mistakes I repeated this week."
 - "使用 $investment-discipline-console，先帮我建立组合上下文，再开始审查任何交易。"
 - "使用 $investment-discipline-console，把我的港股和美股账户合并成一个组合视角，并告诉我哪些仓位限制已经超了。"
 - "使用 $investment-discipline-console，帮我审查一下我是否应该先开一个腾讯的初始仓位。"
 - "使用 $investment-discipline-console，看看我当前持仓里哪些仓位最需要复盘。"
 - "使用 $investment-discipline-console，对比我 T 日和 T+3 日的持仓变化，并指出哪些大变化需要我解释原因。"
-- "使用 $investment-discipline-console，帮我做一次周度纪律复盘，总结这周我重复了哪些错误。"
 
 ## Workflow Decision
 
 Choose the workflow before writing any analysis.
+
+**Mixed input rule** — when the user provides both a holdings screenshot and a new trade idea in the same message, do not try to merge them into one response. Run `workflow-portfolio-review` first to establish the current book state, then run `workflow-watchlist` or `workflow-pre-trade` in sequence. Never skip the portfolio review step when the current book is unclear.
 
 - If the user has a new idea or vague interest, use the watchlist intake flow in `references/workflow-watchlist.md`.
 - If the user wants to review current holdings, concentration, winners, losers, leverage exposure, or uploads a broker screenshot, use `references/workflow-portfolio-review.md`.
 - If the user wants to compare holdings across two dates, asks why the book changed so much, or provides a T-day snapshot and a T+N-day snapshot, use `references/workflow-holdings-delta-review.md`.
 - If the user is considering a buy, sell, trim, add, or rotation, use the pre-trade review flow in `references/workflow-pre-trade.md`.
 - If the user has already executed a trade and wants to learn from it, use the attribution flow in `references/workflow-attribution.md`.
-- If the user wants the system to remember recurring discipline patterns, summarize a user style, or use prior review history to make future reviews more targeted, use `references/workflow-discipline-memory.md`.
 - If the user is using the system for the first time or has no stable portfolio context, run `references/workflow-bootstrap.md` before anything else.
 - If the user wants to set up the whole operating system, bootstrap the objects from `references/schemas.md`, then walk through all three flows in order.
 
@@ -53,11 +63,9 @@ Choose the workflow before writing any analysis.
 
 - Start from explicit objects. If the user gives free-form notes, map them into the schemas in `references/schemas.md`.
 - On first use, do not skip portfolio bootstrap. Capture total portfolio size with unit, numeric return and drawdown targets, numeric risk budgets, leveraged-tool policy, current macro judgment, and current industry judgment before formal trade review.
-- Treat memory as discipline memory, not market prediction memory. Store user style, risk rules, recurring mistakes, and process lessons. Do not store or reuse “this symbol should be bought or sold” conclusions as memory.
 - When bootstrap is incomplete, prioritize collecting missing portfolio context before doing deep company research or browsing for supporting evidence.
 - Use holdings review before trade review when the existing book itself is unclear or when the user starts from screenshots.
 - When two holdings snapshots differ materially, run holdings delta review before judging whether the changes were good or bad. Ask the user to explain large unexplained changes instead of inferring intent.
-- When memory exists, use it to personalize process guidance: check whether the current action repeats a known mistake pattern, conflicts with the user's stated style, or breaks a previously confirmed rule.
 - Keep the sequence intact: watchlist first, then trade review, then attribution.
 - Separate process quality from PnL. A profitable trade can still be a bad process.
 - Surface missing information instead of papering over it. Missing thesis, invalidation, position sizing, or trigger evidence should degrade confidence.
@@ -75,7 +83,6 @@ Choose the workflow before writing any analysis.
 - Read `references/workflow-watchlist.md` for new ideas, thesis capture, catalyst capture, and cooldown handling.
 - Read `references/workflow-pre-trade.md` for pre-trade review, decision actions, and memo output.
 - Read `references/workflow-attribution.md` for post-trade review, mistake tagging, and lessons.
-- Read `references/workflow-discipline-memory.md` when you need to build or update a user discipline profile, summarize recurring patterns, or reuse prior process lessons in a new review.
 - Read `references/behavior-tags.md` when you need to map execution problems into recurring behavior profiles.
 - Read `references/examples.md` for canonical prompts and output shapes.
 - Read `references/end-to-end-examples.md` for realistic end-to-end samples covering first-run bootstrap, multi-account holdings review, and trade review.
@@ -106,15 +113,6 @@ When running attribution analysis, include:
 - Repeatable lesson
 - Next safeguard
 
-When running discipline memory, include:
-
-- Updated user discipline profile
-- Confirmed rule memory
-- Repeated behavior patterns
-- Decision samples worth remembering
-- Weekly or periodic discipline digest when enough evidence exists
-- Personalized review implications for the next trade or holdings review
-
 When running a holdings review, include:
 
 - Normalized holdings snapshot
@@ -137,7 +135,6 @@ When running a holdings delta review, include:
 ## Guardrails
 
 - Do not present outputs as investment advice or certainty.
-- Do not make asset-selection recommendations. Focus on trade discipline, process quality, risk alignment, and behavior correction.
 - Do not skip invalidation logic.
 - Do not let recent price action substitute for thesis updates.
 - Do not bless oversized positions without an explicit sizing rationale.
