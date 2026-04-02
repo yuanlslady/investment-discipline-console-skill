@@ -1,4 +1,4 @@
----
+﻿---
 name: investment-discipline-console
 description: "Structured investment-discipline workflow for turning scattered ideas, positions, screenshots, and trade notes into a repeatable process: first-run portfolio bootstrap, holdings review, holdings delta review, watchlist intake, pre-trade review, post-trade attribution, and behavior correction. Use when the user wants to build or apply a disciplined investing workflow, review current holdings from manual input or broker screenshots, compare portfolio snapshots across time, aggregate multiple accounts into one portfolio view, review a candidate trade before execution, write a pre-trade memo, record a trade thesis and invalidation, analyze a completed trade, tag recurring execution mistakes, or bootstrap a personal investment operating system from notes that currently live only in the user's head."
 ---
