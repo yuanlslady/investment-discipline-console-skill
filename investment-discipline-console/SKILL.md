@@ -1,5 +1,6 @@
 ﻿---
 name: investment-discipline-console
+
 description: "Structured investment-discipline workflow for turning scattered ideas, positions, screenshots, and trade notes into a repeatable process: first-run portfolio bootstrap, holdings review, holdings delta review, watchlist intake, pre-trade review, post-trade attribution, and behavior correction. Use when the user wants to build or apply a disciplined investing workflow, review current holdings from manual input or broker screenshots, compare portfolio snapshots across time, aggregate multiple accounts into one portfolio view, review a candidate trade before execution, write a pre-trade memo, record a trade thesis and invalidation, analyze a completed trade, tag recurring execution mistakes, or bootstrap a personal investment operating system from notes that currently live only in the user's head."
 ---
 
@@ -77,6 +78,7 @@ Choose the workflow before writing any analysis.
 
 - Read `references/doctrine.md` for the philosophy and non-negotiable rules.
 - Read `references/schemas.md` when the input is unstructured or when you need to create or repair a workflow record.
+- Read `references/technical-context.md` for the technical indicator set, thresholds, and rules governing how signals influence the action set.
 - Read `references/workflow-bootstrap.md` when the user is new, when portfolio context is missing, or when macro and industry context need to be refreshed.
 - Read `references/workflow-portfolio-review.md` when the user wants a review of the current book or provides holdings screenshots.
 - Read `references/workflow-holdings-delta-review.md` when the user wants to compare two snapshots of the book across time or when position changes need an explanation and process review.
@@ -100,9 +102,10 @@ When running a pre-trade review, include:
 - Final action
 - Why this action was chosen
 - Missing fields
-- Red flags
+- Red flags (including any technical red flags)
+- Technical context (`technical_context` block: RSI, MA position, 52W percentile, relative strength, one-sentence summary, `action_influence`)
 - Suggested next step
-- Pre-trade memo
+- Pre-trade memo (including Technical Context section)
 
 When running attribution analysis, include:
 
@@ -122,6 +125,7 @@ When running a holdings review, include:
 - Portfolio-level red flags
 - Suggested actions for review, trim, exit, or further work
 - Breach calculations that can be reused by later workflow steps
+- `technical_context` block for each position with weight > 5% or existing red flags
 
 When running a holdings delta review, include:
 

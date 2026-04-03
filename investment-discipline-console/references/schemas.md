@@ -71,6 +71,12 @@ entry_reason_summary: string
 exit_invalidators_summary: string
 theme: string
 source: manual | screenshot | broker_ocr | note | other
+# Technical fields — optional, populate when available
+rsi_14: number | omit
+price_vs_ma20: above | below | omit
+price_vs_ma200: above | below | omit
+w52_percentile: number | omit
+rel_strength_3m: number | omit
 ```
 
 ## account_snapshot
@@ -229,4 +235,26 @@ profile_key: string
 profile_name: string
 profile_summary: string
 evidence: string[]
+```
+
+## technical_context
+
+Used in pre-trade review (always) and portfolio review (for positions with weight > 5% or existing red flags). See `references/technical-context.md` for thresholds and rules.
+
+```yaml
+ticker: string
+data_date: ISO date | "user_supplied"
+rsi_14: number | "data_unavailable"
+rsi_signal: overbought | elevated | neutral | depressed | oversold | data_unavailable
+price_vs_ma20: above | below | data_unavailable
+price_vs_ma50: above | below | data_unavailable
+price_vs_ma200: above | below | data_unavailable
+ma200_slope: rising | flat | falling | data_unavailable
+w52_percentile: number | "data_unavailable"
+w52_signal: near_high | mid_range | near_low | data_unavailable
+rel_strength_3m_vs_benchmark: number | "data_unavailable"
+rel_strength_signal: outperforming | in_line | underperforming | data_unavailable
+benchmark_used: string
+technical_summary: string
+action_influence: none | note | delay | reduce_size
 ```

@@ -91,6 +91,19 @@ If these fields are missing, do not return `allow`. Return `review` or `delay` i
 
 Before bootstrap is complete, prefer gathering missing portfolio context over doing deep company-level research. The discipline system comes first; research detail comes after the operating constraints are explicit.
 
+## Technical Context Check
+
+Before finalizing the action, run a `technical_context` check using the four indicators defined in `references/technical-context.md`: RSI(14), price vs moving averages, 52-week range percentile, and relative strength vs benchmark.
+
+**Data sourcing:** Ask the user to supply indicator data, or fetch it via search if available. If data is unavailable, mark each field as `data_unavailable` and proceed without blocking the workflow.
+
+**Action influence rules:**
+- RSI >= 75: upgrade action toward `delay` or `reduce_size` unless there is a compelling catalyst with defined exit
+- Price below MA200 with falling slope: note as an additional red flag; does not block on its own
+- 52W percentile >= 85 AND RSI >= 70: trigger `reduce_size`
+- Relative strength <= -15% vs benchmark: surface "what is the market pricing that is not in my thesis?" as a required question before proceeding
+- Technical signals cannot downgrade a `block`. Discipline violations stay blocked regardless of indicator readings.
+
 ## Red Flags
 
 Escalate concern when any of the following appears:
@@ -114,6 +127,10 @@ Escalate concern when any of the following appears:
 - Theme concentration is too high
 - Thesis has weakened or already played out
 - Cooldown is still active
+- RSI >= 75 on entry (timing caution)
+- Price below MA200 with falling slope (trend break)
+- 52W percentile >= 85 AND RSI >= 70 (compound overbought signal)
+- Relative strength <= -15% vs benchmark with no explanation in thesis (hidden risk flag)
 
 ## Memo Structure
 
@@ -129,6 +146,7 @@ The pre-trade memo should contain:
 - What would make the trade wrong
 - Planned size and holding plan
 - **Contingency plan** (for catalyst trades)
+- **Technical context** (RSI, MA position, 52W percentile, relative strength — one sentence summary and `action_influence`)
 - Final action
 - Required next step
 

@@ -55,6 +55,22 @@ Use the user's thresholds from `portfolio_context` whenever available, especiall
 - `max_total_leveraged_exposure_pct`
 - `profit_take_or_deleverage_trigger_pct`
 
+## Technical Snapshot for Key Positions
+
+After completing the standard review, run a `technical_context` check for positions that meet either condition:
+
+- portfolio weight > 5%, or
+- already flagged with a red flag in this review
+
+**Data sourcing:** Fetch indicator data via search or ask the user to supply it. If unavailable, mark as `data_unavailable` and skip the signal — do not block the review.
+
+For each qualifying position, return a `technical_context` block (see `references/schemas.md` and `references/technical-context.md`). The `technical_summary` field should be one sentence describing the technical posture and whether it reinforces or contradicts the action already suggested for that position.
+
+Technical signals in portfolio review influence suggested actions as follows:
+- RSI >= 75 on a position already flagged for "keep and monitor": upgrade to "reduce size, reassess timing"
+- Relative strength <= -15% vs benchmark on a position without explicit thesis update: add "what is the market pricing?" to the follow-up question list
+- Price below MA200 with falling slope on a core position: add to portfolio-level red flags
+
 ## Red Flags
 
 Escalate concern when any of the following appears:
@@ -78,6 +94,7 @@ Return:
 - a normalized `portfolio_book` when multiple accounts are involved
 - a `holdings_review`
 - a short human-readable review with the top three issues and the next action list
+- a `technical_context` block for each qualifying position (weight > 5% or flagged)
 
 The `holdings_review` should calculate or estimate:
 
